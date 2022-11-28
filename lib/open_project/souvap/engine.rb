@@ -17,6 +17,28 @@ module OpenProject::Souvap
       'openproject-souvap',
       :author_url => 'https://openproject.org',
     ) do
+      menu :top_menu,
+           :central_navigation,
+           nil,
+           partial: 'souvap/menu/top_menu_node'
+    end
+
+    add_api_path :linked_applications do
+      "#{root}/linked_applications"
+    end
+
+    add_api_endpoint 'API::V3::Root' do
+      mount ::API::V3::LinkedApplications::LinkedApplicationsAPI
+    end
+
+    initializer 'souvap.settings' do
+      ::Settings::Definition.add 'souvap_navigation_url',
+                                 default: nil,
+                                 format: :string
+
+      ::Settings::Definition.add 'souvap_navigation_secret',
+                                 default: nil,
+                                 format: :string
     end
   end
 end
