@@ -46,6 +46,9 @@ module API
             make_request
               .then(&method(:parse))
               .then(&method(:transform))
+          rescue StandardError => e
+            Rails.logger.error { "Failed to fetch entries from #{self.class.name}: #{e.message}" }
+            raise ::API::V3::LinkedApplications::Error, e.message
           end
 
           protected

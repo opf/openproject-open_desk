@@ -42,11 +42,13 @@ module API
               ::Souvap::CentralNavigationService
                 .new(user.login)
                 .call
+                .on_failure { |result| raise result.message }
+                .result
             end
           end
 
           def transform(json)
-            json['categories'].map do |group|
+            json['categories'].filter_map do |group|
               next if group['identifier'] == 'ux_management'
               items = group['entries'].map { |item| parse_item(item) }
               ::Souvap::ApplicationGroup.new identifier: group['identifier'],

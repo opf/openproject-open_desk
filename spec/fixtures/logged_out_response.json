@@ -1,0 +1,18 @@
+{
+  "categories": [
+    {
+      "identifier": "main_anonymous",
+      "display_name": "Sovereign workplace",
+      "entries": [
+        {
+          "identifier": "Anmeldung",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/Anmeldung.svg",
+          "display_name": "Login",
+          "link": "http://portal.dpx-openproject.at-univention.de/univention/saml/?location=%2Funivention%2Fportal%2F",
+          "target": "_blank",
+          "keywords": []
+        }
+      ]
+    }
+  ]
+}

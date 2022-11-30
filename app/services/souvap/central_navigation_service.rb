@@ -28,15 +28,14 @@
 
 module Souvap
   class CentralNavigationService
-    attr_reader :user
+    attr_reader :login
 
-    def initialize(user)
-      @user = user
+    def initialize(login)
+      @login = login
     end
 
     def call
-      body = make_request
-      parse_items(JSON.parse(body)).compact
+      ServiceResult.success(result: make_request)
     rescue StandardError => e
       ServiceResult.failure(message: e.message)
     end
@@ -62,7 +61,7 @@ module Souvap
 
     def credentials
       shared_secret = Setting.souvap_navigation_secret
-      Base64::encode64("#{user.login}:#{shared_secret}")
+      Base64::encode64("#{login}:#{shared_secret}")
     end
   end
 end

@@ -31,6 +31,10 @@ module API
     module LinkedApplications
       class LinkedApplicationsAPI < ::API::OpenProjectAPI
         resource :linked_applications do
+          rescue_from Error do |e|
+            error!(e, 500)
+          end
+
           helpers do
             def adapter
               @adapter ||= begin
@@ -42,7 +46,7 @@ module API
 
           get do
             unless adapter
-              error!('No matching configuration for central navigation', 500, { 'Content-Type' => 'text/plain' })
+              error!('No matching configuration for central navigation', 400, { 'Content-Type' => 'text/plain' })
             end
 
             adapter.fetch_entries

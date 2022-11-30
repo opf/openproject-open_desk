@@ -29,12 +29,7 @@
 module API
   module V3
     module LinkedApplications
-      class LinkedApplicationRepresenter < ::API::Decorators::Single
-        property :identifier
-        property :icon
-        property :name
-        property :name
-      end
+      class Error < ::StandardError; end
     end
   end
 end
