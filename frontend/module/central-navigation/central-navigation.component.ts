@@ -7,6 +7,10 @@ import {
 import { TopMenuService } from 'core-app/core/top-menu/top-menu.service';
 import { map } from 'rxjs/operators';
 import { CentralNavigationService } from 'core-app/features/plugins/linked/openproject-souvap/central-navigation/central-navigation.service';
+import {
+  DomSanitizer,
+  SafeUrl,
+} from '@angular/platform-browser';
 
 export const souvapCentralNavigationSelector = 'op-souvap-central-navigation';
 
@@ -34,5 +38,10 @@ export class CentralNavigationComponent {
     private topMenuService:TopMenuService,
     private elementRef:ElementRef,
     private centralNavigationService:CentralNavigationService,
+    private sanitizer:DomSanitizer,
   ) {}
+
+  iconURL(url:string):SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
 }

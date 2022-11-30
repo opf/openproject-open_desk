@@ -20,7 +20,7 @@
           <img
             *ngIf="item.icon"
             class="op-souvap-navigation--item-icon"
-            [src]="item.icon"/>
+            [src]="iconURL(item.icon)"/>
           <span [textContent]="item.name"></span>
         </a>
       </li>
