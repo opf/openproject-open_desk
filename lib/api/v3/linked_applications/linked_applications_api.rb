@@ -33,12 +33,18 @@ module API
         resource :linked_applications do
           helpers do
             def adapter
-              @adapter ||= Adapters::Souvap.new(user: current_user, session: request.session
-              )
+              @adapter ||= begin
+                adapter_cls = [Adapters::Souvap, Adapters::Development].select(&:applicable?).first
+                adapter_cls&.new(user: current_user, session: request.session)
+              end
             end
           end
 
           get do
+            unless adapter
+              error!('No matching configuration for central navigation', 500, { 'Content-Type' => 'text/plain' })
+            end
+
             adapter.fetch_entries
           end
         end
