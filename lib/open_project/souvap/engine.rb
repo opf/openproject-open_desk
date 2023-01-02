@@ -8,6 +8,7 @@ module OpenProject::Souvap
     include OpenProject::Plugins::ActsAsOpEngine
 
     patch_with_namespace :Redmine, :MenuManager, :TopMenuHelper
+    patch_with_namespace :OpenProject, :CustomStyles, :ColorThemes
 
     assets %w(
       souvap/logo.svg
