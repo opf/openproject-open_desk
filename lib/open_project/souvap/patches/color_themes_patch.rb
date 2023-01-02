@@ -25,6 +25,7 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
+OpenProject::CustomStyles::ColorThemes::SOUVAP_THEME_NAME = 'Souvereign Work Place'.freeze
 
 module OpenProject::Souvap::Patches
   module ColorThemesPatch
@@ -39,7 +40,7 @@ module OpenProject::Souvap::Patches
 
       def souvap_theme
         {
-          theme: 'Souvereign Work Place',
+          theme: OpenProject::CustomStyles::ColorThemes::SOUVAP_THEME_NAME,
           colors: {
             'primary-color' => "#1A67A3",
             'primary-color-dark' => "#175A8E",
