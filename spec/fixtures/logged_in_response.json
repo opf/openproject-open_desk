@@ -1,0 +1,106 @@
+{
+  "categories": [
+    {
+      "identifier": "ux_groupware",
+      "display_name": "Groupware",
+      "entries": [
+        {
+          "identifier": "gw_mail",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/gw_mail.svg",
+          "display_name": "Email",
+          "link": "https://webmail.dpx-openproject.at-univention.de/appsuite/#app=io.ox/mail",
+          "target": "tab_groupware",
+          "keywords": []
+        },
+        {
+          "identifier": "gw_calendar",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/gw_calendar.svg",
+          "display_name": "Calendar",
+          "link": "https://webmail.dpx-openproject.at-univention.de/appsuite/#app=io.ox/calendar",
+          "target": "tab_groupware",
+          "keywords": []
+        },
+        {
+          "identifier": "gw_contacts",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/gw_contacts.svg",
+          "display_name": "Contacts",
+          "link": "https://webmail.dpx-openproject.at-univention.de/appsuite/#app=io.ox/contacts",
+          "target": "tab_groupware",
+          "keywords": []
+        },
+        {
+          "identifier": "gw_tasks",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/gw_tasks.svg",
+          "display_name": "Tasks",
+          "link": "https://webmail.dpx-openproject.at-univention.de/appsuite/#app=io.ox/tasks",
+          "target": "tab_groupware",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "identifier": "ux_fileshare",
+      "display_name": "Fileshare",
+      "entries": [
+        {
+          "identifier": "fs_files",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/fs_files.svg",
+          "display_name": "Files",
+          "link": "https://fs.dpx-openproject.dpx-openproject.at-univention.de/apps/files",
+          "target": "tab_fileshare",
+          "keywords": []
+        },
+        {
+          "identifier": "fs_activity",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/fs_activity.svg",
+          "display_name": "Activity",
+          "link": "https://fs.dpx-openproject.dpx-openproject.at-univention.de/apps/activity",
+          "target": "tab_fileshare",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "identifier": "Kollaboration",
+      "display_name": "Collaboration",
+      "entries": [
+        {
+          "identifier": "dpx-openproject.Videokonferenzen",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/dpx-openproject.Videokonferenzen.svg",
+          "display_name": "Videoconference",
+          "link": "https://ucc.dpx-openproject.at-univention.de",
+          "target": "_blank",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "identifier": "ux_management",
+      "display_name": "Management Tools",
+      "entries": [
+        {
+          "identifier": "mgmt_project",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/mgmt_project.svg",
+          "display_name": "Project management",
+          "link": "https://portal.dpx-openproject.at-univention.de/openproject/auth/keycloak",
+          "target": "tab_mgmt_project",
+          "keywords": []
+        }
+      ]
+    },
+    {
+      "identifier": "help",
+      "display_name": "Help",
+      "entries": [
+        {
+          "identifier": "Documentation",
+          "icon_url": "http://portal.dpx-openproject.at-univention.de/univention/portal/icons/entries/Documentation.svg",
+          "display_name": "Documentation",
+          "link": "https://www.phoenix-werkstatt.de/downloads-stack/",
+          "target": "_blank",
+          "keywords": []
+        }
+      ]
+    }
+  ]
+}

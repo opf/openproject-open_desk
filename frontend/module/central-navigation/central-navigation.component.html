@@ -1,0 +1,48 @@
+<ng-container *ngIf="active$ | async">
+  <ng-container *ngIf="(navigationGroups$ | async) as groups; else loadingOrError">
+    <ul
+      *ngFor="let group of groups"
+      class="op-souvap-navigation--group"
+    >
+      <li
+        class="op-souvap-navigation--item-header"
+        [textContent]="group.name"
+      >
+      </li>
+      <li
+        *ngFor="let item of group.items"
+        class="op-souvap-navigation--item"
+      >
+        <a
+          class="op-souvap-navigation--item-link op-menu--item-action"
+          [href]="item.link"
+        >
+          <img
+            *ngIf="item.icon"
+            class="op-souvap-navigation--item-icon"
+            [src]="iconURL(item.icon)"/>
+          <span [textContent]="item.name"></span>
+        </a>
+      </li>
+    </ul>
+  </ng-container>
+</ng-container>
+<ng-template #loadingOrError>
+  <span
+    *ngIf="(loadingError$ | async) as error; else loading"
+    class="op-menu--item-action"
+  >
+    <span class="spot-icon spot-icon_warning"></span>
+    {{ text.error }}
+  </span>
+  <ng-template #loading>
+    <op-content-loader
+      class="op-add-existing-pane--loading"
+      viewBox="0 0 200 70"
+    >
+      <svg:rect x="0" y="0" width="100%" height="20" rx="1"/>
+      <svg:rect x="0" y="24" width="100%" height="20" rx="1"/>
+      <svg:rect x="0" y="48" width="100%" height="20" rx="1"/>
+    </op-content-loader>
+  </ng-template>
+</ng-template>
