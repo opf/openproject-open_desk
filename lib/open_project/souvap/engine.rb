@@ -40,12 +40,17 @@ module OpenProject::Souvap
       ::Settings::Definition.add 'souvap_navigation_secret',
                                  default: nil,
                                  format: :string
+
+      ::Settings::Definition.add 'enterprise_token',
+                                 default: nil,
+                                 format: :string
     end
 
     config.to_prepare do
       # Preload the souvap theme seeder so it becomes discoverable,
       # as the core seeder relies on .subclasses
       ::DemoData::Souvap::SouvapThemeSeeder
+      ::DemoData::Souvap::SouvapTokenSeeder
     end
   end
 end
