@@ -41,5 +41,11 @@ module OpenProject::Souvap
                                  default: nil,
                                  format: :string
     end
+
+    config.to_prepare do
+      # Preload the souvap theme seeder so it becomes discoverable,
+      # as the core seeder relies on .subclasses
+      ::DemoData::Souvap::SouvapThemeSeeder
+    end
   end
 end
