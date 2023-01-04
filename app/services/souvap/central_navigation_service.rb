@@ -61,7 +61,7 @@ module Souvap
 
     def credentials
       shared_secret = Setting.souvap_navigation_secret
-      Base64::encode64("#{login}:#{shared_secret}")
+      Base64::strict_encode64("#{login}:#{shared_secret}")
     end
   end
 end
