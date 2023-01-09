@@ -42,22 +42,22 @@ module OpenProject::Souvap::Patches
         {
           theme: OpenProject::CustomStyles::ColorThemes::SOUVAP_THEME_NAME,
           colors: {
-            'primary-color' => "#1A67A3",
-            'primary-color-dark' => "#175A8E",
-            'alternative-color' => "#35C53F",
-            'content-link-color' => "#175A8E",
-            'header-bg-color' => "#FAFAFA",
-            'header-item-bg-hover-color' => "#175A8E",
-            'header-item-font-color' => "#313131",
-            'header-item-font-hover-color' => "#313131",
-            'header-border-bottom-color' => "#E1E1E1",
-            'main-menu-bg-color' => "#ECECEC",
-            'main-menu-bg-selected-background' => "#A9A9A9",
-            'main-menu-bg-hover-background' => "#FFFFFF",
-            'main-menu-font-color' => "#333333",
-            'main-menu-hover-font-color' => "#333333",
-            'main-menu-selected-font-color' => "#333333",
-            'main-menu-border-color' => "#EAEAEA"
+            "primary-color": "#9E292B",
+            "primary-color-dark": "#B0131D",
+            "alternative-color": "#EAEAEA",
+            "content-link-color": "#095AD2",
+            "header-bg-color": "#FAFAFA",
+            "header-border-bottom-color": "#E1E1E1",
+            "header-item-bg-hover-color": "#9E292B",
+            "header-item-font-color": "#313131",
+            "header-item-font-hover-color": "#EAEAEA",
+            "main-menu-border-color": "#9E292B",
+            "main-menu-bg-color": "#ECECEC",
+            "main-menu-bg-hover-background": "#9E292B",
+            "main-menu-bg-selected-background": "#ffffff",
+            "main-menu-font-color": "#000000",
+            "main-menu-hover-font-color": "#EAEAEA",
+            "main-menu-selected-font-color": "#000000"
           }
         }
       end
