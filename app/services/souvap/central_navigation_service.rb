@@ -28,10 +28,11 @@
 
 module Souvap
   class CentralNavigationService
-    attr_reader :login
+    attr_reader :login, :locale
 
-    def initialize(login)
+    def initialize(login, language)
       @login = login
+      @locale = map_locale(language.presence || 'en')
     end
 
     def call
@@ -42,13 +43,21 @@ module Souvap
 
     private
 
-
+    def map_locale(language)
+      {
+        'en' => 'en-US',
+        'de' => 'de-DE',
+        'fr' => 'fr-FR',
+      }.fetch(language.to_s, 'en-US')
+    end
 
     def make_request
+      Rails.logger.debug { "Performing souvap request for #{login} with locale #{locale}." }
       response = RestClient
         .get(
           Setting.souvap_navigation_url,
           {
+            params: { language: locale },
             'Accept' => "application/json",
             'Authorization' => "Basic #{credentials}"
           }

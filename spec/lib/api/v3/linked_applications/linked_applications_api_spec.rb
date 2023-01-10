@@ -38,7 +38,7 @@ describe API::V3::LinkedApplications::LinkedApplicationsAPI, type: :request, con
   let(:logged_out_response) { File.read File.join(fixture_path, 'logged_out_response.json') }
   let(:logged_in_response) { File.read File.join(fixture_path, 'logged_in_response.json') }
 
-  shared_let(:user) { create :user, login: 'my.username' }
+  shared_let(:user) { create :user, login: 'my.username', language: 'en' }
   current_user { user }
 
   context 'when not configured' do
@@ -55,13 +55,17 @@ describe API::V3::LinkedApplications::LinkedApplicationsAPI, type: :request, con
     let(:response_code) { 200 }
     let(:response_body) { logged_in_response }
 
+    let(:locale) { 'en-US' }
     let(:basic_auth) { Base64::encode64('my.username:foo').chomp }
     let(:request_headers) do
-      { authorization: "Basic #{basic_auth}", accept: "application/json" }
+      {
+        authorization: "Basic #{basic_auth}",
+        accept: "application/json"
+      }
     end
 
     let(:stub) do
-      stub_request(:get, 'http://stubbed.url/request')
+      stub_request(:get, "http://stubbed.url/request?language=#{locale}")
         .with(
           headers: request_headers
         )
@@ -90,9 +94,23 @@ describe API::V3::LinkedApplications::LinkedApplicationsAPI, type: :request, con
       expect(collab['items'][0]['name']).to eq 'Videoconference'
     end
 
+    context 'with other language' do
+      let(:locale) { 'de-DE' }
+
+      it 'maps that locale to the expected one' do
+        user.update! language: 'de'
+
+        stub
+        get get_path
+
+        expect(last_response.status).to eq 200
+        expect(stub).to have_been_requested
+      end
+    end
+
     context 'with error stub' do
       let(:stub) do
-        stub_request(:get, 'http://stubbed.url/request')
+        stub_request(:get, 'http://stubbed.url/request?language=en-US')
           .with(
             headers: request_headers
           )
@@ -107,7 +125,7 @@ describe API::V3::LinkedApplications::LinkedApplicationsAPI, type: :request, con
         get get_path
 
         expect(last_response.status).to eq 500
-        expect(last_response.message).to eq '500 Internal Server Error'
+        expect(last_response.body).to eq '500 Internal Server Error'
         expect(stub).to have_been_requested
       end
     end

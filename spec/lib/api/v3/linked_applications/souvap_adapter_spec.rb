@@ -28,7 +28,7 @@
 require 'spec_helper'
 
 describe ::API::V3::LinkedApplications::Adapters::Souvap do
-  let(:user) { double(User, login: 'foo') }
+  let(:user) { double(User, login: 'foo', language: 'de') }
   let(:session) { double(Sessions::UserSession, id: 'session-of-foo') }
   let(:service_double) { instance_double(::Souvap::CentralNavigationService) }
   let(:instance) { described_class.new(user:, session:) }
@@ -36,7 +36,7 @@ describe ::API::V3::LinkedApplications::Adapters::Souvap do
   before do
     allow(::Souvap::CentralNavigationService)
       .to(receive(:new))
-      .with('foo')
+      .with('foo', 'de')
       .and_return(service_double)
   end
 
@@ -67,7 +67,7 @@ describe ::API::V3::LinkedApplications::Adapters::Souvap do
 
     context 'when not cached' do
       it 'calls the service' do
-        allow(service_double).to receive(:call).and_return logged_out_response
+        allow(service_double).to receive(:call).and_return ServiceResult.success(result: logged_out_response)
 
         expect(subject).to be_a Array
         expect(subject[0].name).to eq 'Sovereign workplace'

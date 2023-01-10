@@ -40,7 +40,7 @@ module API
           def make_request
             Rails.cache.fetch("souvap/navigation-items/#{session.id}", expires_in: 1.minute) do
               ::Souvap::CentralNavigationService
-                .new(user.login)
+                .new(user.login, user.language)
                 .call
                 .on_failure { |result| raise result.message }
                 .result
