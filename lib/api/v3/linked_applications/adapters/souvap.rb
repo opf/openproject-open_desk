@@ -38,7 +38,7 @@ module API
           protected
 
           def make_request
-            Rails.cache.fetch("souvap/navigation-items/#{session.id}", expires_in: 1.minute) do
+            Rails.cache.fetch("souvap/navigation-items/#{session.id}-#{user.language}", expires_in: 1.minute) do
               ::Souvap::CentralNavigationService
                 .new(user.login, user.language)
                 .call

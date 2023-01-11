@@ -28,15 +28,19 @@
 require 'spec_helper'
 
 describe ::API::V3::LinkedApplications::Adapters::Souvap do
-  let(:user) { double(User, login: 'foo', language: 'de') }
+  let(:login) { 'foo' }
+  let(:language) { 'de' }
+  let(:user) { double(User, login:, language:) }
+
   let(:session) { double(Sessions::UserSession, id: 'session-of-foo') }
   let(:service_double) { instance_double(::Souvap::CentralNavigationService) }
   let(:instance) { described_class.new(user:, session:) }
 
+
   before do
     allow(::Souvap::CentralNavigationService)
       .to(receive(:new))
-      .with('foo', 'de')
+      .with(login, language)
       .and_return(service_double)
   end
 
@@ -85,7 +89,19 @@ describe ::API::V3::LinkedApplications::Adapters::Souvap do
 
     context 'when cached' do
       before do
-        Rails.cache.write('souvap/navigation-items/session-of-foo', '{ "categories": [] }')
+        Rails.cache.write('souvap/navigation-items/session-of-foo-de', '{ "categories": [] }')
+      end
+
+      context 'with switched language' do
+        let(:language) { 'en' }
+
+        it 'does call the API' do
+          allow(service_double).to receive(:call).and_return(ServiceResult.success(result: '{ "categories": [] }'))
+
+          expect(subject).to eq []
+
+          expect(service_double).to have_received(:call)
+        end
       end
 
       it 'does not call the API' do
