@@ -28,17 +28,17 @@ import {
   Injector,
   NgModule,
 } from '@angular/core';
-import { OPSharedModule } from 'core-app/shared/shared.module';
 import {
   CentralNavigationComponent,
   souvapCentralNavigationSelector,
 } from 'core-app/features/plugins/linked/openproject-souvap/central-navigation/central-navigation.component';
 import { HookService } from 'core-app/features/plugins/hook-service';
 import { ContentLoaderModule } from '@ngneat/content-loader';
+import { OpSharedModule } from 'core-app/shared/shared.module';
 
 @NgModule({
   imports: [
-    OPSharedModule,
+    OpSharedModule,
     ContentLoaderModule,
   ],
   declarations: [
