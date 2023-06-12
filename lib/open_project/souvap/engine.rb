@@ -10,6 +10,8 @@ module OpenProject::Souvap
     patch_with_namespace :Redmine, :MenuManager, :TopMenuHelper
     patch_with_namespace :OpenProject, :CustomStyles, :ColorThemes
 
+    patches [:CustomStylesHelper]
+
     assets %w(
       souvap/logo.svg
     )

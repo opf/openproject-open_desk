@@ -25,41 +25,16 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-OpenProject::CustomStyles::ColorThemes::SOUVAP_THEME_NAME = 'Souvereign Work Place'.freeze
-
 module OpenProject::Souvap::Patches
-  module ColorThemesPatch
+  module CustomStylesHelperPatch
     def self.included(base)
-      base.singleton_class.prepend InstanceMethods
+      base.prepend InstanceMethods
     end
 
     module InstanceMethods
-      def themes
-        super + [souvap_theme]
-      end
-
-      def souvap_theme
-        {
-          theme: OpenProject::CustomStyles::ColorThemes::SOUVAP_THEME_NAME,
-          colors: {
-            "primary-color": "#004B76",
-            "primary-color-dark": "#003451",
-            "alternative-color": "#35c53f",
-            "content-link-color": "#095AD2",
-            "header-bg-color": "#FAFAFA",
-            "header-border-bottom-color": "#E1E1E1",
-            "header-item-bg-hover-color": "#004B76",
-            "header-item-font-color": "#313131",
-            "header-item-font-hover-color": "#EAEAEA",
-            "main-menu-border-color": "#004B76",
-            "main-menu-bg-color": "#ECECEC",
-            "main-menu-bg-hover-background": "#004B76",
-            "main-menu-bg-selected-background": "#ffffff",
-            "main-menu-font-color": "#000000",
-            "main-menu-hover-font-color": "#EAEAEA",
-            "main-menu-selected-font-color": "#000000"
-          }
-        }
+      # Always apply custom styles for souvap
+      def apply_custom_styles?(*)
+        true
       end
     end
   end

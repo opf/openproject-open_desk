@@ -14,7 +14,7 @@ module DemoData
 
         custom_style = CustomStyle.current
         custom_style.logo = File.new(OpenProject::Souvap::Engine.root.join('app', 'assets', 'images', 'souvap', 'logo.svg'))
-        custom_style.favicon = File.new(OpenProject::Souvap::Engine.root.join('app', 'assets', 'images', 'souvap', 'favicon.png'))
+        custom_style.favicon = File.new(OpenProject::Souvap::Engine.root.join('app', 'assets', 'images', 'souvap', 'favicon.ico'))
         custom_style.save!
         custom_style.touch
       end
