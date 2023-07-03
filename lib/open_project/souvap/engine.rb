@@ -9,6 +9,7 @@ module OpenProject::Souvap
 
     patch_with_namespace :Redmine, :MenuManager, :TopMenuHelper
     patch_with_namespace :OpenProject, :CustomStyles, :ColorThemes
+    patch_with_namespace :OpenProject, :Plugins, :AuthPlugin
 
     patches [:CustomStylesHelper]
 
