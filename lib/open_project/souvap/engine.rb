@@ -22,7 +22,7 @@ module OpenProject::Souvap
       'openproject-souvap',
       :author_url => 'https://openproject.org',
     ) do
-      menu :top_menu,
+      menu :souvap_menu,
            :central_navigation,
            nil,
            partial: 'souvap/menu/top_menu_node'
