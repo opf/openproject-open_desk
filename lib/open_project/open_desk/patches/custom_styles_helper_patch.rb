@@ -25,52 +25,17 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-
-module Souvap
-  class CentralNavigationService
-    attr_reader :login, :locale
-
-    def initialize(login, language)
-      @login = login
-      @locale = map_locale(language.presence || 'en')
+module OpenProject::OpenDesk::Patches
+  module CustomStylesHelperPatch
+    def self.included(base)
+      base.prepend InstanceMethods
     end
 
-    def call
-      ServiceResult.success(result: make_request)
-    rescue StandardError => e
-      ServiceResult.failure(message: e.message)
-    end
-
-    private
-
-    def map_locale(language)
-      {
-        'en' => 'en-US',
-        'de' => 'de-DE',
-        'fr' => 'fr-FR',
-      }.fetch(language.to_s, 'en-US')
-    end
-
-    def make_request
-      Rails.logger.debug { "Performing souvap request for #{login} with locale #{locale}." }
-      response = RestClient
-        .get(
-          Setting.souvap_navigation_url,
-          {
-            params: { language: locale },
-            'Accept' => "application/json",
-            'Authorization' => "Basic #{credentials}"
-          }
-        )
-
-      raise "Failed to fetch central navigation data." if response.code >= 400
-
-      response.body
-    end
-
-    def credentials
-      shared_secret = Setting.souvap_navigation_secret
-      Base64::strict_encode64("#{login}:#{shared_secret}")
+    module InstanceMethods
+      # Always apply custom styles for open desk
+      def apply_custom_styles?(*)
+        true
+      end
     end
   end
 end

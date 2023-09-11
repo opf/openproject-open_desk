@@ -38,7 +38,7 @@ module API
           helpers do
             def adapter
               @adapter ||= begin
-                adapter_cls = [Adapters::Souvap, Adapters::Development].select(&:applicable?).first
+                adapter_cls = [Adapters::OpenDesk, Adapters::Development].select(&:applicable?).first
                 adapter_cls&.new(user: current_user, session: request.session)
               end
             end

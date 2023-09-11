@@ -25,16 +25,8 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-module OpenProject::Souvap::Patches
-  module AuthPluginPatch
-    def self.included(base)
-      base.singleton_class.prepend InstanceMethods
-    end
 
-    module InstanceMethods
-      def filtered_strategy?(key, provider)
-        key == :openid_connect || super
-      end
-    end
-  end
+module OpenDesk
+  LinkedApplication = Struct.new(:identifier, :icon, :name, :link, keyword_init: true)
+  ApplicationGroup = Struct.new(:identifier, :name, :items, keyword_init: true)
 end

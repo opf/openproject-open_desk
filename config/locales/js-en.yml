@@ -28,6 +28,6 @@
 
 en:
   js:
-    souvap:
+    opendesk:
       central_navigation:
         loading_error: "Failed to load central navigation"

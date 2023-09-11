@@ -29,7 +29,7 @@
 require 'spec_helper'
 require 'rack/test'
 
-describe API::V3::LinkedApplications::LinkedApplicationsAPI, type: :request, content_type: :json do
+RSpec.describe API::V3::LinkedApplications::LinkedApplicationsAPI, type: :request, content_type: :json do
   include Rack::Test::Methods
   include API::V3::Utilities::PathHelper
 
@@ -125,7 +125,7 @@ describe API::V3::LinkedApplications::LinkedApplicationsAPI, type: :request, con
         get get_path
 
         expect(last_response.status).to eq 500
-        expect(last_response.body).to eq '500 Internal Server Error'
+        expect(last_response.body).to eq "Failed to fetch openDesk central navigation data"
         expect(stub).to have_been_requested
       end
     end

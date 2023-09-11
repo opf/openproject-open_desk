@@ -25,16 +25,41 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-module OpenProject::Souvap::Patches
-  module CustomStylesHelperPatch
+OpenProject::CustomStyles::ColorThemes::OPEN_DESK_THEME_NAME = 'openDesk'.freeze
+
+module OpenProject::OpenDesk::Patches
+  module ColorThemesPatch
     def self.included(base)
-      base.prepend InstanceMethods
+      base.singleton_class.prepend InstanceMethods
     end
 
     module InstanceMethods
-      # Always apply custom styles for souvap
-      def apply_custom_styles?(*)
-        true
+      def themes
+        super + [open_desk_theme]
+      end
+
+      def open_desk_theme
+        {
+          theme: OpenProject::CustomStyles::ColorThemes::OPEN_DESK_THEME_NAME,
+          colors: {
+            "primary-color": "#52C1FF",
+            "primary-color-dark": "#003451",
+            "alternative-color": "#5E27DD",
+            "content-link-color": "#095AD2",
+            "header-bg-color": "#FAFAFA",
+            "header-border-bottom-color": "#E1E1E1",
+            "header-item-bg-hover-color": "#5e27dd",
+            "header-item-font-color": "#313131",
+            "header-item-font-hover-color": "#EAEAEA",
+            "main-menu-border-color": "#5e27dd",
+            "main-menu-bg-color": "#ECECEC",
+            "main-menu-bg-hover-background": "#5e27dd",
+            "main-menu-bg-selected-background": "#ffffff",
+            "main-menu-font-color": "#000000",
+            "main-menu-hover-font-color": "#EAEAEA",
+            "main-menu-selected-font-color": "#000000"
+          }
+        }
       end
     end
   end

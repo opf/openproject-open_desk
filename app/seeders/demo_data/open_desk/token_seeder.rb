@@ -1,8 +1,8 @@
 module DemoData
-  module Souvap
-    class SouvapTokenSeeder < Seeder
+  module OpenDesk
+    class TokenSeeder < Seeder
       def seed_data!
-        puts "*** Seeding Souvap license from ENV"
+        puts "*** Seeding openDesk license from ENV"
 
         token = Setting.enterprise_token
         if token.present?

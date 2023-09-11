@@ -30,7 +30,7 @@ module API
   module V3
     module LinkedApplications
       module Adapters
-        class Development < Souvap
+        class Development < OpenDesk
           def self.applicable?
             Rails.env.development?
           end

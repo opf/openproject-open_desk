@@ -25,6 +25,16 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
+module OpenProject::OpenDesk::Patches
+  module AuthPluginPatch
+    def self.included(base)
+      base.singleton_class.prepend InstanceMethods
+    end
 
-module OpenProject::Souvap::Patches
+    module InstanceMethods
+      def filtered_strategy?(key, provider)
+        key == :openid_connect || super
+      end
+    end
+  end
 end

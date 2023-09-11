@@ -25,17 +25,45 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-module OpenProject::Souvap::Patches
-  module EnterpriseServicePatch
+
+module OpenProject::OpenDesk::Patches
+  module TopMenuHelperPatch
     def self.included(base)
       base.prepend InstanceMethods
     end
 
     module InstanceMethods
-      def call(action)
-        return result(true) if action.to_sym == :ldap_groups
+      def render_top_menu_left
+        render_open_desk_logo + super
+      end
 
-        super
+      def top_menu_left_menu_items
+        [render_open_desk_menu] + super
+      end
+
+      def render_open_desk_menu(items = first_level_menu_items_for(:open_desk_menu))
+        unless items.empty?
+          render_menu_dropdown_with_items(
+            label: '',
+            label_options: { icon: 'icon-menu', title: I18n.t('open_desk.central_navigation_menu') },
+            items:,
+            options: { drop_down_id: 'more-menu', drop_down_class: 'drop-down--modules ', menu_item_class: 'hidden-for-mobile' }
+          )
+        end
+      end
+
+      def render_open_desk_logo
+        content_tag :div, class: 'op-logo opendesk-logo' do
+          link_to('', fixed_home_url, title: I18n.t('label_home'), class: 'op-logo--link opendesk-logo--link')
+        end
+      end
+
+      def render_top_menu_center
+        ''
+      end
+
+      def render_top_menu_right
+        top_menu_right_node
       end
     end
   end

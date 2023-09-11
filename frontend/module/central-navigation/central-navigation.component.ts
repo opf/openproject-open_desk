@@ -9,26 +9,26 @@ import {
   catchError,
   map,
 } from 'rxjs/operators';
-import { CentralNavigationService } from 'core-app/features/plugins/linked/openproject-souvap/central-navigation/central-navigation.service';
+import { CentralNavigationService } from './central-navigation.service';
 import {
   DomSanitizer,
   SafeUrl,
 } from '@angular/platform-browser';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 
-export const souvapCentralNavigationSelector = 'op-souvap-central-navigation';
+export const openDeskCentralNavigationSelector = 'op-opendesk-central-navigation';
 
 @Component({
-  selector: souvapCentralNavigationSelector,
+  selector: openDeskCentralNavigationSelector,
   templateUrl: './central-navigation.component.html',
   styleUrls: ['./central-navigation.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CentralNavigationComponent {
-  @HostBinding('class.op-souvap-navigation') className = true;
+  @HostBinding('class.op-opendesk-navigation') className = true;
 
   text = {
-    error: this.I18n.t('js.souvap.central_navigation.loading_error'),
+    error: this.I18n.t('js.opendesk.central_navigation.loading_error'),
   };
 
   active$ = this

@@ -1,4 +1,4 @@
-import { IApplicationGroup } from 'core-app/features/plugins/linked/openproject-souvap/central-navigation/central-navigation.model';
+import { IApplicationGroup } from './central-navigation.model';
 import {
   catchError,
   shareReplay,

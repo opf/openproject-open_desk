@@ -2,24 +2,24 @@
   <ng-container *ngIf="(navigationGroups$ | async) as groups; else loadingOrError">
     <ul
       *ngFor="let group of groups"
-      class="op-souvap-navigation--group"
+      class="op-opendesk-navigation--group"
     >
       <li
-        class="op-souvap-navigation--item-header"
+        class="op-opendesk-navigation--item-header"
         [textContent]="group.name"
       >
       </li>
       <li
         *ngFor="let item of group.items"
-        class="op-souvap-navigation--item"
+        class="op-opendesk-navigation--item"
       >
         <a
-          class="op-souvap-navigation--item-link op-menu--item-action"
+          class="op-opendesk-navigation--item-link op-menu--item-action"
           [href]="item.link"
         >
           <img
             *ngIf="item.icon"
-            class="op-souvap-navigation--item-icon"
+            class="op-opendesk-navigation--item-icon"
             [src]="iconURL(item.icon)"/>
           <span [textContent]="item.name"></span>
         </a>

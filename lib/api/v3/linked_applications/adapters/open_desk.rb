@@ -30,7 +30,7 @@ module API
   module V3
     module LinkedApplications
       module Adapters
-        class Souvap < Base
+        class OpenDesk < Base
           def self.applicable?
             !!(Setting.souvap_navigation_url && Setting.souvap_navigation_secret)
           end
@@ -38,8 +38,8 @@ module API
           protected
 
           def make_request
-            Rails.cache.fetch("souvap/navigation-items/#{session.id}-#{user.language}", expires_in: 1.minute) do
-              ::Souvap::CentralNavigationService
+            Rails.cache.fetch("open_desk/navigation-items/#{session.id}-#{user.language}", expires_in: 1.minute) do
+              ::OpenDesk::CentralNavigationService
                 .new(user.login, user.language)
                 .call
                 .on_failure { |result| raise result.message }
@@ -51,14 +51,14 @@ module API
             json['categories'].filter_map do |group|
               next if group['identifier'] == 'ux_management'
               items = group['entries'].map { |item| parse_item(item) }
-              ::Souvap::ApplicationGroup.new identifier: group['identifier'],
-                                             name: group['display_name'],
-                                             items:
+              ::OpenDesk::ApplicationGroup.new identifier: group['identifier'],
+                                               name: group['display_name'],
+                                               items:
             end
           end
 
           def parse_item(json)
-            ::Souvap::LinkedApplication
+            ::OpenDesk::LinkedApplication
               .new({
                      identifier: json['identifier'],
                      icon: json['icon_url'],

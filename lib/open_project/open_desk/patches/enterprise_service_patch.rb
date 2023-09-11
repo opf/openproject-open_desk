@@ -25,8 +25,18 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
+module OpenProject::OpenDesk::Patches
+  module EnterpriseServicePatch
+    def self.included(base)
+      base.prepend InstanceMethods
+    end
 
-module Souvap
-  LinkedApplication = Struct.new(:identifier, :icon, :name, :link, keyword_init: true)
-  ApplicationGroup = Struct.new(:identifier, :name, :items, keyword_init: true)
+    module InstanceMethods
+      def call(action)
+        return result(true) if action.to_sym == :ldap_groups
+
+        super
+      end
+    end
+  end
 end

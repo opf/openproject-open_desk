@@ -27,18 +27,18 @@
 #++
 require 'spec_helper'
 
-describe ::API::V3::LinkedApplications::Adapters::Souvap do
+RSpec.describe ::API::V3::LinkedApplications::Adapters::OpenDesk do
   let(:login) { 'foo' }
   let(:language) { 'de' }
   let(:user) { double(User, login:, language:) }
 
   let(:session) { double(Sessions::UserSession, id: 'session-of-foo') }
-  let(:service_double) { instance_double(::Souvap::CentralNavigationService) }
+  let(:service_double) { instance_double(::OpenDesk::CentralNavigationService) }
   let(:instance) { described_class.new(user:, session:) }
 
 
   before do
-    allow(::Souvap::CentralNavigationService)
+    allow(::OpenDesk::CentralNavigationService)
       .to(receive(:new))
       .with(login, language)
       .and_return(service_double)
@@ -89,7 +89,7 @@ describe ::API::V3::LinkedApplications::Adapters::Souvap do
 
     context 'when cached' do
       before do
-        Rails.cache.write('souvap/navigation-items/session-of-foo-de', '{ "categories": [] }')
+        Rails.cache.write('open_desk/navigation-items/session-of-foo-de', '{ "categories": [] }')
       end
 
       context 'with switched language' do

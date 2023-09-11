@@ -30,8 +30,8 @@ import {
 } from '@angular/core';
 import {
   CentralNavigationComponent,
-  souvapCentralNavigationSelector,
-} from 'core-app/features/plugins/linked/openproject-souvap/central-navigation/central-navigation.component';
+  openDeskCentralNavigationSelector,
+} from './central-navigation/central-navigation.component';
 import { HookService } from 'core-app/features/plugins/hook-service';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { OpSharedModule } from 'core-app/shared/shared.module';
@@ -52,7 +52,7 @@ export class PluginModule {
   constructor(injector:Injector) {
     const hookService = injector.get(HookService);
     hookService.register('openProjectAngularBootstrap', () => [
-      { selector: souvapCentralNavigationSelector, cls: CentralNavigationComponent },
+      { selector: openDeskCentralNavigationSelector, cls: CentralNavigationComponent },
     ]);
   }
 }
