@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = "info@openproject.org"
   s.homepage    = "https://community.openproject.org"
   s.summary     = 'OpenProject OpenDesk Plugin'
-  s.description = "Plugin for integrating OpenProject into Sovereign work place / openDesk"
+  s.description = "Plugin for integrating OpenProject into openDesk"
   s.license     = "GPLv3"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + %w(README.md)
