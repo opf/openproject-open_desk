@@ -74,7 +74,7 @@ RSpec.describe ::API::V3::LinkedApplications::Adapters::OpenDesk do
         allow(service_double).to receive(:call).and_return ServiceResult.success(result: logged_out_response)
 
         expect(subject).to be_a Array
-        expect(subject[0].name).to eq 'Sovereign workplace'
+        expect(subject[0].name).to eq 'openDesk'
         expect(subject[0].items).to be_a Array
 
         item = subject[0].items.first
