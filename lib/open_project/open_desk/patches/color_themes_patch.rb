@@ -42,22 +42,22 @@ module OpenProject::OpenDesk::Patches
         {
           theme: OpenProject::CustomStyles::ColorThemes::OPEN_DESK_THEME_NAME,
           colors: {
-            "primary-color": "#52C1FF",
-            "primary-color-dark": "#003451",
+            "primary-color": "#5E27DD",
+            "primary-color-dark": "#4526AA",
             "alternative-color": "#5E27DD",
-            "content-link-color": "#095AD2",
-            "header-bg-color": "#FAFAFA",
-            "header-border-bottom-color": "#E1E1E1",
-            "header-item-bg-hover-color": "#5e27dd",
-            "header-item-font-color": "#313131",
-            "header-item-font-hover-color": "#EAEAEA",
-            "main-menu-border-color": "#5e27dd",
-            "main-menu-bg-color": "#ECECEC",
-            "main-menu-bg-hover-background": "#5e27dd",
-            "main-menu-bg-selected-background": "#ffffff",
+            "content-link-color": "#5E27DD",
+            "header-bg-color": "#FFFFFF",
+            "header-item-bg-hover-color": "#E5E5E5",
+            "header-item-font-color": "#000000",
+            "header-item-font-hover-color": "#000000",
+            "header-border-bottom-color": "#E5E5E5",
+            "main-menu-bg-color": "#FFFFFF",
+            "main-menu-bg-selected-background": "#5E27DD",
+            "main-menu-bg-hover-background": "#E5E5E5",
             "main-menu-font-color": "#000000",
-            "main-menu-hover-font-color": "#EAEAEA",
-            "main-menu-selected-font-color": "#000000"
+            "main-menu-selected-font-color": "#FFFFFF"
+            "main-menu-hover-font-color": "#000000",
+            "main-menu-border-color": "##E5E5E5",
           }
         }
       end
