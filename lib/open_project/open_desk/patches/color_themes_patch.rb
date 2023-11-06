@@ -55,9 +55,9 @@ module OpenProject::OpenDesk::Patches
             "main-menu-bg-selected-background": "#5E27DD",
             "main-menu-bg-hover-background": "#E5E5E5",
             "main-menu-font-color": "#000000",
-            "main-menu-selected-font-color": "#FFFFFF"
+            "main-menu-selected-font-color": "#FFFFFF",
             "main-menu-hover-font-color": "#000000",
-            "main-menu-border-color": "##E5E5E5",
+            "main-menu-border-color": "##E5E5E5"
           }
         }
       end
