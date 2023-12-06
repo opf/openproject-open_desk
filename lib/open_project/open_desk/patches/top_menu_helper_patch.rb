@@ -37,11 +37,8 @@ module OpenProject::OpenDesk::Patches
         render_open_desk_logo + super
       end
 
-      def top_menu_left_menu_items
-        [render_open_desk_menu] + super
-      end
-
-      def render_open_desk_menu(items = first_level_menu_items_for(:open_desk_menu))
+      def render_module_top_menu_node(*)
+        items = first_level_menu_items_for(:open_desk_menu)
         unless items.empty?
           render_menu_dropdown_with_items(
             label: '',
@@ -60,10 +57,6 @@ module OpenProject::OpenDesk::Patches
 
       def render_top_menu_center
         ''
-      end
-
-      def render_top_menu_right
-        top_menu_right_node
       end
     end
   end

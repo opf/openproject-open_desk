@@ -49,7 +49,6 @@ module API
 
           def transform(json)
             json['categories'].filter_map do |group|
-              next if group['identifier'] == 'ux_management'
               items = group['entries'].map { |item| parse_item(item) }
               ::OpenDesk::ApplicationGroup.new identifier: group['identifier'],
                                                name: group['display_name'],
