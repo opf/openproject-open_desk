@@ -51,7 +51,7 @@ module OpenProject::OpenDesk::Patches
 
       def render_open_desk_logo
         content_tag :div, class: 'op-logo opendesk-logo' do
-          link_to('', fixed_home_url, title: I18n.t('label_home'), class: 'op-logo--link opendesk-logo--link')
+          link_to('', configurable_home_url, title: I18n.t('label_home'), class: 'op-logo--link opendesk-logo--link')
         end
       end
 
