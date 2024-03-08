@@ -43,7 +43,7 @@ module OpenProject::OpenDesk::Patches
           theme: OpenProject::CustomStyles::ColorThemes::OPEN_DESK_THEME_NAME,
           colors: {
             "primary-button-color": "#5E27DD",
-            "content-link-color": "#5E27DD",
+            "accent-color": "#5E27DD",
             "header-bg-color": "#FFFFFF",
             "header-item-bg-hover-color": "#E5E5E5",
             "header-item-font-color": "#000000",
