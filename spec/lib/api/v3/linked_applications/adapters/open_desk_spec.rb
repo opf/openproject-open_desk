@@ -63,7 +63,7 @@ RSpec.describe API::V3::LinkedApplications::Adapters::OpenDesk do
   end
 
   describe "#fetch_entries" do
-    let(:fixture_path) { File.expand_path("../../../../fixtures", __dir__) }
+    let(:fixture_path) { File.expand_path("../../../../../fixtures", __dir__) }
     let(:logged_out_response) { File.read File.join(fixture_path, "logged_out_response.json") }
 
     subject { instance.fetch_entries }

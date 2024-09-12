@@ -75,6 +75,7 @@ RSpec.describe API::V3::LinkedApplications::LinkedApplicationsAPI, content_type:
 
     it "returns the transformed API response" do
       stub
+
       get get_path
 
       expect(last_response).to have_http_status 200
@@ -82,9 +83,9 @@ RSpec.describe API::V3::LinkedApplications::LinkedApplicationsAPI, content_type:
 
       body = JSON.parse(last_response.body)
       expect(body).to be_a Array
-      expect(body.count).to eq 4
+      expect(body.count).to eq 5
       identifiers = body.pluck("identifier")
-      expect(identifiers).to contain_exactly("ux_groupware", "ux_fileshare", "Kollaboration", "help")
+      expect(identifiers).to contain_exactly("ux_groupware", "ux_fileshare", "Kollaboration", "help", "ux_management")
 
       collab = body.detect { |item| item["identifier"] == "Kollaboration" }
       expect(collab["items"]).to be_a Array
