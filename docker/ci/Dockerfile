@@ -29,7 +29,7 @@ RUN groupadd --force --gid $APP_USER_GID $APP_USER && \
   useradd -d $APP_PATH -m $APP_USER -s /bin/bash --uid $APP_USER_UID --gid $APP_USER_GID && \
   chown -R $APP_USER:$APP_USER /usr/local/bundle
 
-# ENV CI=true
+ENV CI=true
 ENV RAILS_ENV=test
 ENV OPENPROJECT_DISABLE_DEV_ASSET_PROXY=1
 ENV CAPYBARA_DYNAMIC_BIND_IP=1

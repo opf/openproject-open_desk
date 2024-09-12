@@ -25,7 +25,7 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-OpenProject::CustomStyles::ColorThemes::OPEN_DESK_THEME_NAME = 'openDesk'.freeze
+OpenProject::CustomStyles::ColorThemes::OPEN_DESK_THEME_NAME = "openDesk".freeze
 
 module OpenProject::OpenDesk::Patches
   module ColorThemesPatch

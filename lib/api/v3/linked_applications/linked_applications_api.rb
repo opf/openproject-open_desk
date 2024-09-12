@@ -38,7 +38,7 @@ module API
           helpers do
             def adapter
               @adapter ||= begin
-                adapter_cls = [Adapters::OpenDesk, Adapters::Development].select(&:applicable?).first
+                adapter_cls = [Adapters::OpenDesk, Adapters::Development].find(&:applicable?)
                 adapter_cls&.new(user: current_user, session: request.session)
               end
             end
@@ -46,7 +46,7 @@ module API
 
           get do
             unless adapter
-              error!('No matching configuration for central navigation', 400, { 'Content-Type' => 'text/plain' })
+              error!("No matching configuration for central navigation", 400, { "Content-Type" => "text/plain" })
             end
 
             adapter.fetch_entries

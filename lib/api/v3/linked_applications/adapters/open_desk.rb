@@ -37,7 +37,7 @@ module API
 
           protected
 
-          def make_request
+          def make_request # rubocop:disable Metrics/AbcSize
             Rails.cache.fetch("open_desk/navigation-items/#{session.id}-#{user.language}", expires_in: 1.minute) do
               ::OpenDesk::CentralNavigationService
                 .new(user.login, user.language)
@@ -48,10 +48,10 @@ module API
           end
 
           def transform(json)
-            json['categories'].filter_map do |group|
-              items = group['entries'].map { |item| parse_item(item) }
-              ::OpenDesk::ApplicationGroup.new identifier: group['identifier'],
-                                               name: group['display_name'],
+            json["categories"].filter_map do |group|
+              items = group["entries"].map { |item| parse_item(item) }
+              ::OpenDesk::ApplicationGroup.new identifier: group["identifier"],
+                                               name: group["display_name"],
                                                items:
             end
           end
@@ -59,10 +59,10 @@ module API
           def parse_item(json)
             ::OpenDesk::LinkedApplication
               .new({
-                     identifier: json['identifier'],
-                     icon: json['icon_url'],
-                     link: json['link'],
-                     name: json['display_name']
+                     identifier: json["identifier"],
+                     icon: json["icon_url"],
+                     link: json["link"],
+                     name: json["display_name"]
                    })
           end
         end
