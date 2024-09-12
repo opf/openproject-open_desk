@@ -30,11 +30,11 @@ import {
 } from '@angular/core';
 import {
   CentralNavigationComponent,
-  openDeskCentralNavigationSelector,
 } from './central-navigation/central-navigation.component';
-import { HookService } from 'core-app/features/plugins/hook-service';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { OpSharedModule } from 'core-app/shared/shared.module';
+import { registerCustomElement } from 'core-app/shared/helpers/angular/custom-elements.helper';
+
 
 @NgModule({
   imports: [
@@ -50,9 +50,6 @@ import { OpSharedModule } from 'core-app/shared/shared.module';
 })
 export class PluginModule {
   constructor(injector:Injector) {
-    const hookService = injector.get(HookService);
-    hookService.register('openProjectAngularBootstrap', () => [
-      { selector: openDeskCentralNavigationSelector, cls: CentralNavigationComponent },
-    ]);
+    registerCustomElement('opce-opendesk-central-navigation', CentralNavigationComponent, { injector });
   }
 }

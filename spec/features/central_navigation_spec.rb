@@ -1,6 +1,6 @@
 #-- copyright
 # OpenProject is an open source project management software.
-# Copyright (C) 2012-2022 the OpenProject GmbH
+# Copyright (C) the OpenProject GmbH
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License version 3.
@@ -25,17 +25,29 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-module OpenProject::OpenDesk::Patches
-  module CustomStylesHelperPatch
-    def self.included(base)
-      base.prepend InstanceMethods
-    end
 
-    module InstanceMethods
-      # Always apply custom styles for open desk
-      def apply_custom_styles?(*)
-        CustomStyle.current.present?
-      end
-    end
+require "spec_helper"
+require_module_spec_helper
+
+RSpec.describe "OpenDesk central navigation", :js do
+  current_user { create(:admin) }
+
+  it "opens the central navigation" do
+    visit home_path
+
+    click_link_or_button "openDesk navigation"
+
+    expect(page).to have_css(".op-opendesk-navigation--group", count: 4)
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "E-Mail")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Calendar")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Contacts")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Tasks")
+
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Files")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Activity")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Projects")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Knowledge")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Collaboration")
+    expect(page).to have_css(".op-opendesk-navigation--item", text: "Ad hoc videoconference")
   end
 end
