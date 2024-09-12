@@ -2,7 +2,7 @@ module DemoData
   module OpenDesk
     class TokenSeeder < Seeder
       def seed_data!
-        puts "*** Seeding openDesk license from ENV"
+        Rails.logger.debug "*** Seeding openDesk license from ENV"
 
         token = Setting.enterprise_token
         if token.present?

@@ -34,7 +34,7 @@ module OpenProject::OpenDesk::Patches
     module InstanceMethods
       # Always apply custom styles for open desk
       def apply_custom_styles?(*)
-        true
+        CustomStyle.current.present?
       end
     end
   end

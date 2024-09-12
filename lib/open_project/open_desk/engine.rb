@@ -1,5 +1,5 @@
-require 'active_support/dependencies'
-require 'open_project/plugins'
+require "active_support/dependencies"
+require "open_project/plugins"
 
 module OpenProject::OpenDesk
   class Engine < ::Rails::Engine
@@ -19,33 +19,33 @@ module OpenProject::OpenDesk
     )
 
     register(
-      'openproject-open_desk',
-      :author_url => 'https://openproject.org',
+      "openproject-open_desk",
+      author_url: "https://openproject.org"
     ) do
       menu :open_desk_menu,
            :central_navigation,
            nil,
-           partial: 'open_desk/menu/top_menu_node'
+           partial: "open_desk/menu/top_menu_node"
     end
 
     add_api_path :linked_applications do
       "#{root}/linked_applications"
     end
 
-    add_api_endpoint 'API::V3::Root' do
+    add_api_endpoint "API::V3::Root" do
       mount ::API::V3::LinkedApplications::LinkedApplicationsAPI
     end
 
-    initializer 'open_desk.settings' do
-      ::Settings::Definition.add 'souvap_navigation_url',
+    initializer "open_desk.settings" do
+      ::Settings::Definition.add "souvap_navigation_url",
                                  default: nil,
                                  format: :string
 
-      ::Settings::Definition.add 'souvap_navigation_secret',
+      ::Settings::Definition.add "souvap_navigation_secret",
                                  default: nil,
                                  format: :string
 
-      ::Settings::Definition.add 'enterprise_token',
+      ::Settings::Definition.add "enterprise_token",
                                  default: nil,
                                  format: :string
     end

@@ -25,61 +25,60 @@
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe ::API::V3::LinkedApplications::Adapters::OpenDesk do
-  let(:login) { 'foo' }
-  let(:language) { 'de' }
-  let(:user) { double(User, login:, language:) }
+RSpec.describe API::V3::LinkedApplications::Adapters::OpenDesk do
+  let(:login) { "foo" }
+  let(:language) { "de" }
+  let(:user) { build(:user, login:, language:) }
 
-  let(:session) { double(Sessions::UserSession, id: 'session-of-foo') }
-  let(:service_double) { instance_double(::OpenDesk::CentralNavigationService) }
+  let(:session) { double(Sessions::UserSession, id: "session-of-foo") } # rubocop:disable RSpec/VerifiedDoubles
+  let(:service_double) { instance_double(OpenDesk::CentralNavigationService) }
   let(:instance) { described_class.new(user:, session:) }
 
-
   before do
-    allow(::OpenDesk::CentralNavigationService)
+    allow(OpenDesk::CentralNavigationService)
       .to(receive(:new))
       .with(login, language)
       .and_return(service_double)
   end
 
-  describe '.applicable?' do
+  describe ".applicable?" do
     subject { described_class.applicable? }
 
-    it 'returns false if not configured',
+    it "returns false if not configured",
        with_settings: { souvap_navigation_url: nil } do
-      expect(subject).to eq false
+      expect(subject).to be false
     end
 
-    it 'returns false if partially configured',
-       with_settings: { souvap_navigation_url: 'bla', souvap_navigation_secret: nil } do
-      expect(subject).to eq false
+    it "returns false if partially configured",
+       with_settings: { souvap_navigation_url: "bla", souvap_navigation_secret: nil } do
+      expect(subject).to be false
     end
 
-    it 'returns false if fully configured',
-       with_settings: { souvap_navigation_url: 'bla', souvap_navigation_secret: 'foo' } do
-      expect(subject).to eq true
+    it "returns false if fully configured",
+       with_settings: { souvap_navigation_url: "bla", souvap_navigation_secret: "foo" } do
+      expect(subject).to be true
     end
   end
 
-  describe '#fetch_entries' do
-    let(:fixture_path) { File.expand_path('../../../../fixtures', __dir__) }
-    let(:logged_out_response) { File.read File.join(fixture_path, 'logged_out_response.json') }
+  describe "#fetch_entries" do
+    let(:fixture_path) { File.expand_path("../../../../../fixtures", __dir__) }
+    let(:logged_out_response) { File.read File.join(fixture_path, "logged_out_response.json") }
 
     subject { instance.fetch_entries }
 
-    context 'when not cached' do
-      it 'calls the service' do
+    context "when not cached" do
+      it "calls the service" do
         allow(service_double).to receive(:call).and_return ServiceResult.success(result: logged_out_response)
 
         expect(subject).to be_a Array
-        expect(subject[0].name).to eq 'openDesk'
+        expect(subject[0].name).to eq "openDesk"
         expect(subject[0].items).to be_a Array
 
         item = subject[0].items.first
-        expect(item.identifier).to eq 'Anmeldung'
-        expect(item.name).to eq 'Login'
+        expect(item.identifier).to eq "Anmeldung"
+        expect(item.name).to eq "Login"
         expect(item.icon).to be_present
         expect(item.link).to be_present
 
@@ -87,15 +86,15 @@ RSpec.describe ::API::V3::LinkedApplications::Adapters::OpenDesk do
       end
     end
 
-    context 'when cached' do
+    context "when cached" do
       before do
-        Rails.cache.write('open_desk/navigation-items/session-of-foo-de', '{ "categories": [] }')
+        Rails.cache.write("open_desk/navigation-items/session-of-foo-de", '{ "categories": [] }')
       end
 
-      context 'with switched language' do
-        let(:language) { 'en' }
+      context "with switched language" do
+        let(:language) { "en" }
 
-        it 'does call the API' do
+        it "does call the API" do
           allow(service_double).to receive(:call).and_return(ServiceResult.success(result: '{ "categories": [] }'))
 
           expect(subject).to eq []
@@ -104,7 +103,7 @@ RSpec.describe ::API::V3::LinkedApplications::Adapters::OpenDesk do
         end
       end
 
-      it 'does not call the API' do
+      it "does not call the API" do
         allow(service_double).to receive(:call)
 
         expect(subject).to eq []

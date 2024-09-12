@@ -16,10 +16,7 @@ import {
 } from '@angular/platform-browser';
 import { I18nService } from 'core-app/core/i18n/i18n.service';
 
-export const openDeskCentralNavigationSelector = 'op-opendesk-central-navigation';
-
 @Component({
-  selector: openDeskCentralNavigationSelector,
   templateUrl: './central-navigation.component.html',
   styleUrls: ['./central-navigation.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,

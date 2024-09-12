@@ -38,7 +38,7 @@ module API
           protected
 
           def make_request
-            <<~EOS
+            <<~ENTRIES
               {
                 "categories": [
                   {
@@ -147,7 +147,7 @@ module API
                   }
                 ]
               }
-            EOS
+            ENTRIES
           end
         end
       end

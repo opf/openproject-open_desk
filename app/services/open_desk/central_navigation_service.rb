@@ -32,7 +32,7 @@ module OpenDesk
 
     def initialize(login, language)
       @login = login
-      @locale = map_locale(language.presence || 'en')
+      @locale = map_locale(language.presence || "en")
     end
 
     def call
@@ -45,10 +45,10 @@ module OpenDesk
 
     def map_locale(language)
       {
-        'en' => 'en-US',
-        'de' => 'de-DE',
-        'fr' => 'fr-FR',
-      }.fetch(language.to_s, 'en-US')
+        "en" => "en-US",
+        "de" => "de-DE",
+        "fr" => "fr-FR"
+      }.fetch(language.to_s, "en-US")
     end
 
     def make_request
@@ -58,14 +58,14 @@ module OpenDesk
       response = Net::HTTP.get_response(
         uri,
         {
-          'Accept' => "application/json",
-          'Authorization' => "Basic #{credentials}"
+          "Accept" => "application/json",
+          "Authorization" => "Basic #{credentials}"
         }
       )
 
       case response
       when Net::HTTPSuccess
-      response.body
+        response.body
       else
         Rails.logger.error "Failed to perform open_desk navigation request: #{response.code}"
         raise "Failed to fetch openDesk central navigation data"

@@ -44,8 +44,8 @@ module API
 
           def fetch_entries
             make_request
-              .then(&method(:parse))
-              .then(&method(:transform))
+              .then { |result| parse(result) }
+              .then { |result| transform(result) }
           rescue StandardError => e
             Rails.logger.error { "Failed to fetch entries from #{self.class.name}: #{e.message}" }
             raise ::API::V3::LinkedApplications::Error, e.message

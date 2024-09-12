@@ -1,1 +1,1 @@
-require 'open_project/open_desk'
+require "open_project/open_desk"

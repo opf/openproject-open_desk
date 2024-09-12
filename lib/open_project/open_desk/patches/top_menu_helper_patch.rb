@@ -41,22 +41,22 @@ module OpenProject::OpenDesk::Patches
         items = first_level_menu_items_for(:open_desk_menu)
         unless items.empty?
           render_menu_dropdown_with_items(
-            label: '',
-            label_options: { icon: 'icon-menu', title: I18n.t('open_desk.central_navigation_menu') },
+            label: "",
+            label_options: { icon: "icon-menu", title: I18n.t("open_desk.central_navigation_menu") },
             items:,
-            options: { drop_down_id: 'more-menu', drop_down_class: 'drop-down--modules ', menu_item_class: 'hidden-for-mobile' }
+            options: { drop_down_id: "more-menu", drop_down_class: "drop-down--modules ", menu_item_class: "hidden-for-mobile" }
           )
         end
       end
 
       def render_open_desk_logo
-        content_tag :div, class: 'op-logo opendesk-logo' do
-          link_to('', configurable_home_url, title: I18n.t('label_home'), class: 'op-logo--link opendesk-logo--link')
+        content_tag :div, class: "op-logo opendesk-logo" do
+          link_to("", configurable_home_url, title: I18n.t("label_home"), class: "op-logo--link opendesk-logo--link")
         end
       end
 
       def render_top_menu_center
-        ''
+        ""
       end
     end
   end
