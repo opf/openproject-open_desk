@@ -85,7 +85,7 @@ backend_stuff() {
 }
 
 frontend_stuff() {
-	execute_quiet "DATABASE_URL=nulldb://db time bin/rails openproject:plugins:register_frontend assets:precompile"
+	execute_quiet "OPENPROJECT_ANGULAR_BUILD=fast DATABASE_URL=nulldb://db time bin/rails openproject:plugins:register_frontend assets:precompile"
 	execute_quiet "cp -rp config/frontend_assets.manifest.json public/assets/frontend_assets.manifest.json"
 }
 
@@ -118,21 +118,21 @@ setup_tests() {
 run_units() {
 	shopt -s extglob
 	reset_dbs
-	execute "time bundle exec rspec --tag '~problematic' modules/openproject-open_desk/spec/!(features)"
+	execute "time bundle exec rspec modules/openproject-open_desk/spec/!(features)"
 	cleanup
 }
 
 run_features() {
 	shopt -s extglob
 	reset_dbs
-	execute "time bundle exec rspec --tag '~problematic' modules/openproject-open_desk/spec/features"
+	execute "time bundle exec rspec modules/openproject-open_desk/spec/features"
 	cleanup
 }
 
 run_all() {
 	shopt -s globstar
 	reset_dbs
-	execute "time bundle exec rspec --tag '~problematic' modules/openproject-open_desk/spec"
+	execute "time bundle exec rspec modules/openproject-open_desk/spec"
 	cleanup
 }
 
