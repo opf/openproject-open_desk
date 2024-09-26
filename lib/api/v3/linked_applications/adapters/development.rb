@@ -32,7 +32,7 @@ module API
       module Adapters
         class Development < OpenDesk
           def self.applicable?
-            Rails.env.development?
+            Rails.env.development? || Rails.env.test?
           end
 
           protected
