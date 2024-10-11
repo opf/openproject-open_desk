@@ -42,15 +42,15 @@ module OpenProject::OpenDesk::Patches
         {
           theme: OpenProject::CustomStyles::ColorThemes::OPEN_DESK_THEME_NAME,
           colors: {
-            "primary-button-color": "#5E27DD",
-            "accent-color": "#5E27DD",
+            "primary-button-color": "#571EFA",
+            "accent-color": "#571EFA",
             "header-bg-color": "#FFFFFF",
             "header-item-bg-hover-color": "#E5E5E5",
             "header-item-font-color": "#000000",
             "header-item-font-hover-color": "#000000",
             "header-border-bottom-color": "#E5E5E5",
             "main-menu-bg-color": "#FFFFFF",
-            "main-menu-bg-selected-background": "#5E27DD",
+            "main-menu-bg-selected-background": "#571EFA",
             "main-menu-bg-hover-background": "#E5E5E5",
             "main-menu-font-color": "#000000",
             "main-menu-selected-font-color": "#FFFFFF",

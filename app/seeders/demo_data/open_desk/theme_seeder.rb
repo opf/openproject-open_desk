@@ -15,7 +15,7 @@ module DemoData
         custom_style = CustomStyle.current
         custom_style.logo = File.new(OpenProject::OpenDesk::Engine.root.join("app", "assets", "images", "open_desk", "logo.svg"))
         custom_style.favicon = File.new(OpenProject::OpenDesk::Engine.root.join("app", "assets", "images", "open_desk",
-                                                                                "favicon.ico"))
+                                                                                "favicon.svg"))
         custom_style.save!
         custom_style.touch
       end
