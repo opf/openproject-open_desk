@@ -40,108 +40,53 @@ module API
           def make_request
             <<~ENTRIES
               {
+
                 "categories": [
                   {
-                    "identifier": "swp.groupware",
-                    "display_name": "Communicate & organize",
+                    "identifier": "od.applications",
+                    "display_name": "Anwendungen",
                     "entries": [
                       {
-                        "identifier": "swp.groupware_mail",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.groupware_mail.svg",
-                        "display_name": "E-Mail",
-                        "link": "https://webmail.nightly.istio.qa.souvap.cloud/appsuite/#app=io.ox/mail",
-                        "target": "tab_groupware",
-                        "keywords": {}
+                          "identifier": "swp.fileshare_files",
+                          "icon_url": "https://portal.opendesk.family/univention/portal/icons/entries/swp.fileshare_files.svg",
+                          "display_name": "Dateien",
+                          "link": "https://fs.opendesk.family/apps/files"
                       },
                       {
-                        "identifier": "swp.groupware_calendar",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.groupware_calendar.svg",
-                        "display_name": "Calendar",
-                        "link": "https://webmail.nightly.istio.qa.souvap.cloud/appsuite/#app=io.ox/calendar",
-                        "target": "tab_groupware",
-                        "keywords": {}
+                          "identifier": "swp.management_project",
+                          "icon_url": "https://portal.opendesk.family/univention/portal/icons/entries/swp.management_project.svg",
+                          "display_name": "Projekte",
+                          "link": "https://project.opendesk.family/auth/keycloak"
                       },
                       {
-                        "identifier": "swp.groupware_contacts",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.groupware_contacts.svg",
-                        "display_name": "Contacts",
-                        "link": "https://webmail.nightly.istio.qa.souvap.cloud/appsuite/#app=io.ox/contacts",
-                        "target": "tab_groupware",
-                        "keywords": {}
+                          "identifier": "custon.openproject.meetings",
+                          "icon_url": "https://portal.opendesk.family/univention/portal/icons/entries/custon.openproject.meetings.svg",
+                          "display_name": "Projekte \u003e Meetings",
+                          "link": "https://project.opendesk.family/meetings"
                       },
                       {
-                        "identifier": "swp.groupware_tasks",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.groupware_tasks.svg",
-                        "display_name": "Tasks",
-                        "link": "https://webmail.nightly.istio.qa.souvap.cloud/appsuite/#app=io.ox/tasks",
-                        "target": "tab_groupware",
-                        "keywords": {}
-                      }
-                    ]
-                  },
-                  {
-                    "identifier": "swp.fileshare",
-                    "display_name": "Productivity",
-                    "entries": [
-                      {
-                        "identifier": "swp.fileshare_files",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.fileshare_files.svg",
-                        "display_name": "Files",
-                        "link": "https://fs.nightly.qa.souvap.cloud/apps/files",
-                        "target": "tab_fileshare",
-                        "keywords": {}
+                          "identifier": "swp.management_knowledge",
+                          "icon_url": "https://portal.opendesk.family/univention/portal/icons/entries/swp.management_knowledge.svg",
+                          "display_name": "Wissen",
+                          "link": "https://wiki.opendesk.family"
                       },
                       {
-                        "identifier": "swp.fileshare_activity",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.fileshare_activity.svg",
-                        "display_name": "Activity",
-                        "link": "https://fs.nightly.qa.souvap.cloud/apps/activity",
-                        "target": "tab_fileshare",
-                        "keywords": {}
-                      }
-                    ]
-                  },
-                  {
-                    "identifier": "swp.management",
-                    "display_name": "Management",
-                    "entries": [
-                      {
-                        "identifier": "swp.management_project",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.management_project.svg",
-                        "display_name": "Projects",
-                        "link": "https://project.nightly.qa.souvap.cloud/auth/keycloak",
-                        "target": "tab_projectmanagement",
-                        "keywords": {}
+                          "identifier": "swp.realtime_videoconference",
+                          "icon_url": "https://portal.opendesk.family/univention/portal/icons/entries/swp.realtime_videoconference.svg",
+                          "display_name": "Video-Konferenz",
+                          "link": "https://meet.opendesk.family"
                       },
                       {
-                        "identifier": "swp.management_knowledge",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.management_knowledge.svg",
-                        "display_name": "Knowledge",
-                        "link": "https://wiki.nightly.qa.souvap.cloud",
-                        "target": "tab_knowledgemanagement",
-                        "keywords": {}
-                      }
-                    ]
-                  },
-                  {
-                    "identifier": "swp.realtime",
-                    "display_name": "Collaboration",
-                    "entries": [
-                      {
-                        "identifier": "swp.realtime_collaboration",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.realtime_collaboration.svg",
-                        "display_name": "Collaboration",
-                        "link": "https://chat.nightly.qa.souvap.cloud",
-                        "target": "tab_realtime_collaboration",
-                        "keywords": {}
+                          "identifier": "swp.realtime_collaboration",
+                          "icon_url": "https://portal.opendesk.family/univention/portal/icons/entries/swp.realtime_collaboration.svg",
+                          "display_name": "Chat",
+                          "link": "https://chat.opendesk.family"
                       },
                       {
-                        "identifier": "swp.realtime_videoconference",
-                        "icon_url": "http://portal.nightly.qa.souvap.cloud/univention/portal/icons/entries/swp.realtime_videoconference.svg",
-                        "display_name": "Ad hoc videoconference",
-                        "link": "https://meet.nightly.qa.souvap.cloud",
-                        "target": "tab_realtime_videoconference",
-                        "keywords": {}
+                          "identifier": "swp.notes",
+                          "icon_url": "https://portal.opendesk.family/univention/portal/icons/entries/swp.notes.svg",
+                          "display_name": "Notizen",
+                          "link": "https://notes.opendesk.family"
                       }
                     ]
                   }
