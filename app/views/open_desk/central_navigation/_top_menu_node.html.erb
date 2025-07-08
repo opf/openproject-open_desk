@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "opendesk-central-navigation", src: open_desk_menu_path, loading: :eager do %>
+  <op-content-loader
+    class="op-add-existing-pane--loading"
+    viewBox="0 0 200 70"
+  >
+    <svg:rect x="0" y="0" width="100%" height="20" rx="1"/>
+    <svg:rect x="0" y="24" width="100%" height="20" rx="1"/>
+    <svg:rect x="0" y="48" width="100%" height="20" rx="1"/>
+  </op-content-loader>
+<% end %>

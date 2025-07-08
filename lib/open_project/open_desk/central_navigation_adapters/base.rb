@@ -26,31 +26,38 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module API
-  module V3
-    module LinkedApplications
-      class LinkedApplicationsAPI < ::API::OpenProjectAPI
-        resource :linked_applications do
-          rescue_from Error do |e|
-            error!(e, 500)
-          end
+module OpenProject
+  module OpenDesk
+    module CentralNavigationAdapters
+      class Base
+        attr_reader :user, :session
 
-          helpers do
-            def adapter
-              @adapter ||= begin
-                adapter_cls = [Adapters::OpenDesk, Adapters::Development].find(&:applicable?)
-                adapter_cls&.new(user: current_user, session: request.session)
-              end
-            end
-          end
+        def self.applicable?
+          raise NotImplementedError
+        end
 
-          get do
-            unless adapter
-              error!("No matching configuration for central navigation", 400, { "Content-Type" => "text/plain" })
-            end
+        def initialize(user:, session:)
+          @user = user
+          @session = session
+        end
 
-            adapter.fetch_entries
-          end
+        def fetch_entries
+          make_request
+            .then { |result| parse(result) }
+            .then { |result| transform(result) }
+        rescue StandardError => e
+          Rails.logger.error { "Failed to fetch entries from #{self.class.name}: #{e.message}" }
+          raise FetchError, e.message
+        end
+
+        protected
+
+        def parse(body)
+          JSON.parse(body)
+        end
+
+        def transform(json)
+          raise NotImplementedError
         end
       end
     end

@@ -21,15 +21,7 @@ module OpenProject::OpenDesk
       menu :open_desk_menu,
            :central_navigation,
            nil,
-           partial: "open_desk/menu/top_menu_node"
-    end
-
-    add_api_path :linked_applications do
-      "#{root}/linked_applications"
-    end
-
-    add_api_endpoint "API::V3::Root" do
-      mount ::API::V3::LinkedApplications::LinkedApplicationsAPI
+           partial: "open_desk/central_navigation/top_menu_node"
     end
 
     initializer "open_desk.settings" do

@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "opendesk-central-navigation" do %>
+  <% @entries.each do |group| %>
+    <ul class="op-opendesk-navigation--group">
+      <li class="op-opendesk-navigation--item-header"><%= group.name %></li>
+      <% group.items.each do |item| %>
+        <li class="op-opendesk-navigation--item">
+          <%= link_to item.link, class: "op-opendesk-navigation--item-link op-menu--item-action" do%>
+            <% if item.icon.present? %>
+              <%= tag :img,
+                      src: item.icon,
+                      class: "op-opendesk-navigation--item-icon"
+              %>
+            <% end %>
+            <span><%= item.name %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
