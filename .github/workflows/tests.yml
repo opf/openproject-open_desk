@@ -17,10 +17,12 @@ jobs:
   all:
     name: Run Tests
     timeout-minutes: 30
-    runs-on: ubuntu-latest
+    runs-on:
+      labels: "runs-on=${{ github.run_id }}/runner=8cpu-linux-x64"
     env:
       DOCKER_BUILDKIT: 1
       CI_RETRY_COUNT: 3
+      CI_JOBS: 1
     steps:
       - name: Checkout Core
         uses: actions/checkout@v4
