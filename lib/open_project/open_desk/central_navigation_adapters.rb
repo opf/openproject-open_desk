@@ -26,10 +26,23 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module API
-  module V3
-    module LinkedApplications
-      class Error < ::StandardError; end
+module OpenProject
+  module OpenDesk
+    module CentralNavigationAdapters
+      class FetchError < StandardError; end
+
+      module_function
+
+      def available
+        [
+          OpenDesk,
+          Development
+        ]
+      end
+
+      def find_applicable
+        available.find(&:applicable?)
+      end
     end
   end
 end

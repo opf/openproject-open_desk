@@ -26,42 +26,25 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module API
-  module V3
-    module LinkedApplications
-      module Adapters
-        class Base
-          attr_reader :user, :session
+module OpenDesk
+  class CentralNavigationController < ApplicationController
+    skip_before_action :check_if_login_required
+    no_authorization_required! :menu
 
-          def self.applicable?
-            raise NotImplementedError
-          end
+    def menu
+      @entries = find_navigational_items
+      render layout: false
+    end
 
-          def initialize(user:, session:)
-            @user = user
-            @session = session
-          end
+    private
 
-          def fetch_entries
-            make_request
-              .then { |result| parse(result) }
-              .then { |result| transform(result) }
-          rescue StandardError => e
-            Rails.logger.error { "Failed to fetch entries from #{self.class.name}: #{e.message}" }
-            raise ::API::V3::LinkedApplications::Error, e.message
-          end
+    def find_navigational_items
+      adapter_cls = ::OpenProject::OpenDesk::CentralNavigationAdapters.find_applicable
+      return [] unless adapter_cls
 
-          protected
-
-          def parse(body)
-            JSON.parse(body)
-          end
-
-          def transform(json)
-            raise NotImplementedError
-          end
-        end
-      end
+      adapter_cls
+        .new(user: current_user, session: request.session)
+        .fetch_entries
     end
   end
 end
