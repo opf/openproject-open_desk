@@ -35,6 +35,7 @@ module OpenProject::OpenDesk::Patches
     module InstanceMethods
       def render_module_top_menu_node(*)
         return unless User.current.logged?
+
         items = first_level_menu_items_for(:open_desk_menu)
         unless items.empty?
           # Load entries here so partial can render
@@ -43,6 +44,7 @@ module OpenProject::OpenDesk::Patches
           render Primer::Alpha::Dialog.new(classes: "op-app-menu--item",
                                            title: I18n.t("open_desk.central_navigation_menu"),
                                            size: :small,
+                                           visually_hide_title: true,
                                            menu_id: "op-app-header--modules-menu",
                                            position: :left) do |dialog|
             dialog.with_show_button(icon: "op-grid-menu",
@@ -52,9 +54,11 @@ module OpenProject::OpenDesk::Patches
                                     test_selector: "op-app-header--modules-menu-button",
                                     "aria-controls": "op-app-header--modules-menu-list",
                                     "aria-label": I18n.t("open_desk.central_navigation_menu"))
-
+            dialog.with_header(classes: "op-app-header--modules-menu-header") do
+              render_logo_icon
+            end
             dialog.with_body do
-               render partial: "open_desk/central_navigation/menu_entries"
+              render partial: "open_desk/central_navigation/menu_entries"
             end
           end
         end
