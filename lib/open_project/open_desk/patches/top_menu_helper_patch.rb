@@ -59,17 +59,6 @@ module OpenProject::OpenDesk::Patches
           end
         end
       end
-
-      private
-
-      def find_navigational_items
-        adapter_cls = ::OpenProject::OpenDesk::CentralNavigationAdapters.find_applicable
-        return [] unless adapter_cls
-
-        adapter_cls
-          .new(user: current_user, session: request.session)
-          .fetch_entries
-      end
     end
   end
 end
