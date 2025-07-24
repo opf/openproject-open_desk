@@ -37,29 +37,27 @@ module OpenProject::OpenDesk::Patches
         return unless User.current.logged?
 
         items = first_level_menu_items_for(:open_desk_menu)
-        unless items.empty?
-          # Load entries here so partial can render
-          @entries = find_navigational_items
+        return if items.empty?
 
-          render Primer::Alpha::Dialog.new(classes: "op-app-menu--item",
-                                           title: I18n.t("open_desk.central_navigation_menu"),
-                                           size: :small,
-                                           visually_hide_title: true,
-                                           menu_id: "op-app-header--modules-menu",
-                                           position: :left) do |dialog|
-            dialog.with_show_button(icon: "op-grid-menu",
-                                    scheme: :invisible,
-                                    classes: "op-app-menu--item-action op-app-header--primer-button",
-                                    title: I18n.t("open_desk.central_navigation_menu"),
-                                    test_selector: "op-app-header--modules-menu-button",
-                                    "aria-controls": "op-app-header--modules-menu-list",
-                                    "aria-label": I18n.t("open_desk.central_navigation_menu"))
-            dialog.with_header(classes: "op-app-header--modules-menu-header") do
-              render_logo_icon
-            end
-            dialog.with_body do
-              render partial: "open_desk/central_navigation/menu_entries"
-            end
+        render Primer::Alpha::Dialog.new(classes: "op-app-menu--item",
+                                         title: I18n.t("open_desk.central_navigation_menu"),
+                                         size: :small,
+                                         menu_id: "op-app-header--modules-menu",
+                                         position: :left) do |dialog|
+          dialog.with_show_button(icon: "op-grid-menu",
+                                  scheme: :invisible,
+                                  classes: "op-app-menu--item-action op-app-header--primer-button",
+                                  title: I18n.t("open_desk.central_navigation_menu"),
+                                  test_selector: "op-app-header--modules-menu-button",
+                                  "aria-controls": "op-app-header--modules-menu-list",
+                                  "aria-label": I18n.t("open_desk.central_navigation_menu"))
+          dialog.with_header(classes: "op-app-header--modules-menu-header") do
+            render_logo_icon
+          end
+          dialog.with_body do
+            turbo_frame_tag "opendesk-central-navigation",
+                            src: open_desk_menu_path,
+                            loading: :lazy
           end
         end
       end
