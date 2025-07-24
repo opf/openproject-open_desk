@@ -34,8 +34,6 @@ module OpenProject::OpenDesk::Patches
 
     module InstanceMethods
       def render_module_top_menu_node(*)
-        return unless User.current.logged?
-
         items = first_level_menu_items_for(:open_desk_menu)
         return if items.empty?
 
