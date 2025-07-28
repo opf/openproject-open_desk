@@ -44,8 +44,7 @@ module OpenProject::OpenDesk::Patches
                                          position: :left) do |dialog|
           dialog.with_show_button(icon: "op-grid-menu",
                                   scheme: :invisible,
-                                  classes: "op-app-menu--item-action op-app-header--primer-button",
-                                  title: I18n.t("open_desk.central_navigation_menu"),
+                                  classes: "op-app-header--primer-button",
                                   test_selector: "op-app-header--modules-menu-button",
                                   "aria-controls": "op-app-header--modules-menu-list",
                                   "aria-label": I18n.t("open_desk.central_navigation_menu"))
