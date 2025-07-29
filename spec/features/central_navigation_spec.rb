@@ -36,6 +36,7 @@ RSpec.describe "OpenDesk central navigation",
                  souvap_navigation_url: "http://stubbed.url/request",
                  souvap_navigation_secret: "foo"
                } do
+  include TestSelectorFinders
   current_user { create(:admin, login: "testuser") }
 
   let(:fixture_path) { File.expand_path("../fixtures", __dir__) }
@@ -66,7 +67,7 @@ RSpec.describe "OpenDesk central navigation",
 
     visit home_path
 
-    click_link_or_button "openDesk navigation"
+    page.find_test_selector("op-app-header--modules-menu-button").click
 
     expect(page).to have_css(".op-opendesk-navigation--group", count: 5)
     expect(page).to have_css(".op-opendesk-navigation--item", text: "Email")
