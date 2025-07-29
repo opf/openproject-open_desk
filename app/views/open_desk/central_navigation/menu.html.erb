@@ -16,7 +16,7 @@
           test_selector: "op-menu--item-action",
           classes: "op-opendesk-navigation--item op-opendesk-navigation--item-link op-menu--item-action"
         ) do |menu_item| %>
-          <div class="op-opendesk-navigation--item-content d-flex align-items-center gap-2">
+          <div class="op-opendesk-navigation--item-content">
             <% if item.icon.present? %>
               <%= tag.img src: item.icon,
                           class: "op-opendesk-navigation--item-icon",
