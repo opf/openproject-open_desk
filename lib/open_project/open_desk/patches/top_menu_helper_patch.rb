@@ -39,6 +39,7 @@ module OpenProject::OpenDesk::Patches
 
         render Primer::Alpha::Dialog.new(classes: "op-app-menu--item",
                                          title: I18n.t("open_desk.central_navigation_menu"),
+                                         visually_hide_title: true,
                                          size: :small,
                                          menu_id: "op-app-header--modules-menu",
                                          position: :left) do |dialog|
@@ -48,9 +49,6 @@ module OpenProject::OpenDesk::Patches
                                   test_selector: "op-app-header--modules-menu-button",
                                   "aria-controls": "op-app-header--modules-menu-list",
                                   "aria-label": I18n.t("open_desk.central_navigation_menu"))
-          dialog.with_header(classes: "op-app-header--modules-menu-header") do
-            render_logo_icon
-          end
           dialog.with_body do
             turbo_frame_tag "opendesk-central-navigation",
                             src: open_desk_menu_path,
