@@ -1,6 +1,6 @@
 #-- copyright
 # OpenProject is an open source project management software.
-# Copyright (C) 2012-2022 the OpenProject GmbH
+# Copyright (C) the OpenProject GmbH
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License version 3.
@@ -26,19 +26,8 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module OpenProject::OpenDesk::Patches
-  module TopMenuHelperPatch
-    def self.included(base)
-      base.prepend InstanceMethods
-    end
-
-    module InstanceMethods
-      def default_module_menu_group
-        {
-          title: I18n.t(:label_app_modules, app_title: Setting.app_title),
-          items: []
-        }
-      end
-    end
+module OpenProject::OpenDesk
+  class Hooks < OpenProject::Hook::ViewListener
+    render_on :module_menu_dialog_content_before, partial: "hooks/module_menu_dialog_content/opendesk_menu"
   end
 end

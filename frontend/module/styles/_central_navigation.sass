@@ -1,7 +1,5 @@
 .op-opendesk-navigation
-  &--group
-    margin: 0
-    list-style: none
+  margin: 0
 
   &--item-header
     padding: 0 10px
@@ -9,6 +7,11 @@
     display: block
     height: 32px
     line-height: 32px
+
+  // Override primer action padding
+  // to remain consistent with the icon sizes
+  .ActionListContent
+    padding-left: 4px !important
 
   &--item-icon
     flex: 0
@@ -25,4 +28,3 @@
     display: flex
     align-items: center
     gap: 8px
-
