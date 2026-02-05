@@ -69,7 +69,7 @@ RSpec.describe "OpenDesk central navigation",
 
     page.find_test_selector("op-app-header--modules-menu-button").click
 
-    expect(page).to have_css(".op-opendesk-navigation--group", count: 5)
+    expect(page).to have_css(".op-opendesk-navigation", count: 5)
     expect(page).to have_css(".op-opendesk-navigation--item", text: "Email")
     expect(page).to have_css(".op-opendesk-navigation--item", text: "Calendar")
     expect(page).to have_css(".op-opendesk-navigation--item", text: "Contacts")
@@ -79,5 +79,7 @@ RSpec.describe "OpenDesk central navigation",
     expect(page).to have_css(".op-opendesk-navigation--item", text: "Activity")
     expect(page).to have_css(".op-opendesk-navigation--item", text: "Project management")
     expect(page).to have_css(".op-opendesk-navigation--item", text: "Videoconference")
+
+    expect(page).to have_text "OpenProject modules"
   end
 end

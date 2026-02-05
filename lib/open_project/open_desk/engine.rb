@@ -17,11 +17,18 @@ module OpenProject::OpenDesk
     register(
       "openproject-open_desk",
       author_url: "https://openproject.org"
-    ) do
-      menu :open_desk_menu,
-           :central_navigation,
-           nil,
-           partial: "open_desk/central_navigation/top_menu_node"
+    )
+
+    config.to_prepare do
+      OpenProject::OpenDesk::Hooks
+
+      Redmine::MenuManager.map(:m) do |menu|
+        menu_item = menu.find(item)
+        menu_item.caption = options[:caption]
+        menu_item.icon = options[:icon]
+        menu_item.badge = options[:badge]
+        menu_item.url = options[:url]
+      end
     end
 
     initializer "open_desk.settings" do

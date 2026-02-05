@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "opendesk-central-navigation" do %>
   <% @entries.each do |group| %>
-    <%= render Primer::Alpha::ActionList.new(classes: "op-opendesk-navigation--group") do |list| %>
+    <%= render Primer::Alpha::ActionList.new(classes: "op-opendesk-navigation") do |list| %>
       <% if group.name.present? %>
         <% list.with_heading(
              title: group.name,
@@ -29,6 +29,9 @@
           </div>
         <% end %>
       <% end %>
+
+      <%# Add divider at the end before our actual menu %>
+      <% list.with_divider %>
     <% end %>
   <% end %>
 <% end %>
